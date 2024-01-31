@@ -126,7 +126,14 @@ st.write(
 
 mape = mean_absolute_percentage_error(y_test, predictions)
 
-
+st.markdown(
+    "<h2 style='text-align: center; color: white;'>Margem de erro média:</h2>",
+    unsafe_allow_html=True,
+)
+st.markdown(
+    f"<h1 style='text-align: center; color: white;'>{mape * 100:.2f}%</h1>",
+    unsafe_allow_html=True,
+)
 with st.columns(3)[1]:
     st.markdown("## Margem de erro média:")
     st.markdown(f"# {mape * 100:.2f}%")
