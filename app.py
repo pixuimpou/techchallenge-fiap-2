@@ -96,10 +96,10 @@ predictions = model.predict(x_test).reshape(-1, 1)
 test_timestamps = timeseries[train_size:].index[timesteps - 1 :]
 
 df_real = pd.DataFrame(
-    y_test, index=test_timestamps, columns=["valor_real"]
+    y_test[-100:], index=test_timestamps[-100:], columns=["valor_real"]
 ).reset_index()
 df_pred = pd.DataFrame(
-    predictions, index=test_timestamps, columns=["previsão"]
+    predictions[-100:], index=test_timestamps[-100:], columns=["previsão"]
 ).reset_index()
 
 chart = alt.Chart(df_real).mark_line().encode(
