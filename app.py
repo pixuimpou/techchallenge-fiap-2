@@ -2,9 +2,10 @@ import streamlit as st
 import altair as alt
 import pandas as pd
 import joblib
+from sklearn.metrics import mean_absolute_percentage_error
 from utils import Config, create_driver_path
 from constants import constants
-from plots import plot_seasonal_decompose, plot_svm
+from plots import plot_seasonal_decompose
 from model_utils import split_x_y, aggregate_data_in_timesteps
 
 
@@ -97,25 +98,6 @@ test_timestamps = timeseries[train_size:].index[timesteps - 1 :]
 
 df_real = pd.DataFrame(
     y_test[-100:], index=test_timestamps[-100:], columns=["valor_real"]
-).reset_index()
-df_pred = pd.DataFrame(
-    predictions[-100:], index=test_timestamps[-100:], columns=["previsão"]
-).reset_index()
-
-chart = alt.Chart(df_real).mark_line().encode(
-    x="data",
-    y="valor_real",
-    color=alt.value("blue"),  # Cor da linha para Coluna A
-) + alt.Chart(df_pred).mark_line().encode(
-    x="data",
-    y="previsão",
-    color=alt.value("red"),  # Cor da linha para Coluna B
-)
-
-st.altair_chart(chart, use_container_width=True)
-
-df_real = pd.DataFrame(
-    y_test[-100:], index=test_timestamps[-100:], columns=["valor_real"]
 )
 df_pred = pd.DataFrame(
     predictions[-100:], index=test_timestamps[-100:], columns=["previsao"]
@@ -136,8 +118,12 @@ chart = (
 st.altair_chart(chart, use_container_width=True)
 
 
-st.pyplot(
-    plot_svm(test_timestamps[-100:], y_test[-100:], predictions[-100:], mode="gcf")
+st.write(
+    """
+    Pela proximidade nas linhas,
+    é possível ver que a margem de erro do modelo é bem baixa"""
 )
 
-st.write("Pela proximidade nas linhas n")
+mape = mean_absolute_percentage_error(y_test, predictions)
+
+st.markdown(f"# Valor da margem de erro percentual média: {mape * 100:.2f}")
