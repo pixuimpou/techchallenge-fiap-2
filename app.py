@@ -95,21 +95,31 @@ model = joblib.load("modelo.pkl")
 predictions = model.predict(x_test).reshape(-1, 1)
 test_timestamps = timeseries[train_size:].index[timesteps - 1 :]
 
-df_real = pd.DataFrame(y_test, index=test_timestamps, columns=["valor_real"])
-df_pred = pd.DataFrame(predictions, index=test_timestamps, columns=["previsão"])
+df_real = pd.DataFrame(
+    y_test, index=test_timestamps, columns=["valor_real"]
+).reset_index()
+df_pred = pd.DataFrame(
+    predictions, index=test_timestamps, columns=["previsão"]
+).reset_index()
 df_complete = df_real.join(df_pred)
 
 chart = alt.Chart(df_real).mark_line().encode(
-    color=alt.value("blue"), label="Coluna A"  # Cor da linha para Coluna A
+    x="data",
+    y="valor_real",
+    color=alt.value("blue"),  # Cor da linha para Coluna A
+    label="Coluna A",
 ) + alt.Chart(df_pred).mark_line().encode(
-    color=alt.value("red"), label="Coluna B"  # Cor da linha para Coluna B
+    x="data",
+    y="previsão",
+    color=alt.value("red"),  # Cor da linha para Coluna B
+    label="Coluna B",
 )
 
 st.altair_chart(chart, use_container_width=True)
 
 
-# st.pyplot(
-#     plot_svm(test_timestamps[-100:], y_test[-100:], predictions[-100:], mode="gcf")
-# )
+st.pyplot(
+    plot_svm(test_timestamps[-100:], y_test[-100:], predictions[-100:], mode="gcf")
+)
 
 st.write("Pela proximidade nas linhas n")
