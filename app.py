@@ -3,6 +3,7 @@ import pandas as pd
 
 from utils import Config, create_driver_path
 from constants import constants
+from plots import plot_seasonal_decompose
 
 config = Config()
 
@@ -44,3 +45,17 @@ st.write(df_timeseries.head(20))
 
 st.markdown("## Análise da série temporal")
 st.line_chart(df_timeseries)
+st.write(
+    """
+    O gráfico acima mostra os valores de fechamento da bolsa ao decorrer do tempo.
+    Por ele já é possível ver que os dados possuem uma tendência positiva
+    """
+)
+st.markdown("### Visualização da tendência e sazonalidade dos dados")
+st.markdown(
+    """Para melhor visualização e entendimento dos dados,
+    nessa etapa serão analisados os dados a partir de 2023
+    """
+)
+timeseries = df_timeseries["ultimo"]
+st.pyplot(plot_seasonal_decompose(timeseries=timeseries, mode="gcf"))
