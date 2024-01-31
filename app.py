@@ -30,9 +30,9 @@ st.write(
 )
 st.markdown(
     """As etapas aplicadas foram:
-    1. Converter a coluna de data
-    2. Renomear e excluir colunas não utilizadas
-    3. Completar as datas ausentes (fins de semana e feriados não aparecem nos dados do site)
+    - Converter a coluna de data
+    - Renomear e excluir colunas não utilizadas
+    - Completar as datas ausentes (fins de semana e feriados não aparecem nos dados do site)
     """
 )
 st.markdown("Após os tratamentos, ficamos com a seguinte série temporal:")
