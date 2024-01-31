@@ -63,5 +63,6 @@ st.markdown(
     nessa etapa serão analisados os dados a partir de 2023
     """
 )
+st.set_option("deprecation.showPyplotGlobalUse", False)
 timeseries = df_timeseries["ultimo"]
-st.pyplot(plot_seasonal_decompose(timeseries=timeseries, mode="gcf"))
+st.pyplot(plot_seasonal_decompose(timeseries=timeseries["2023":], mode="gcf"))
