@@ -11,4 +11,5 @@ class constants(Enum):
     DEFAULT_START_DATE = "2000-12-27"
     DEFAULT_END_DATE = "2024-01-30"
 
-    RAW_URL = "https://drive.google.com/file/d/1l5vTZCEBk22HNw5ttfXuo3Q9l7XW-led/view?usp=sharing"
+    RAW_FILE_ID = "1l5vTZCEBk22HNw5ttfXuo3Q9l7XW-led"
+    TIMESERIES_FILE_ID = "1r9gUdTkhdfxjtilV8YXO6_R-6gbJE2FK"

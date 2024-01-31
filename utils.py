@@ -45,7 +45,6 @@ class Config:
             f"from_{self.start_date.isoformat()}_to_{self.end_date.isoformat()}.json"
         )
         self.raw_filepath = os.path.join(data_folder, filename)
-        self.timeseries_filepath = os.path.join(data_folder, "timeseries.csv")
 
     def load_config(self, project_folder: str) -> dict:
         """
@@ -105,17 +104,16 @@ def retry(max_retries: int):
     return decorator
 
 
-def create_driver_path(sharing_url: str) -> str:
+def create_driver_path(file_id: str) -> str:
     """
     Create the path to read a file from Google Drive
 
     Args:
-        sharing_url (str): The link to share the Google Drive file
+        file_id (str): the file ID on Google Drive
 
     Returns:
         str: pandas readable path
     """
 
-    return (
-        "https://drive.google.com/uc?export=download&id=" + sharing_url.split("/")[-2]
-    )
+    url = f"https://drive.google.com/file/d/{file_id}/view?usp=sharing"
+    return "https://drive.google.com/uc?export=download&id=" + url.split("/")[-2]
