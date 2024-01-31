@@ -103,3 +103,19 @@ def retry(max_retries: int):
         return wrapper
 
     return decorator
+
+
+def create_driver_path(sharing_url: str) -> str:
+    """
+    Create the path to read a file from Google Drive
+
+    Args:
+        sharing_url (str): The link to share the Google Drive file
+
+    Returns:
+        str: pandas readable path
+    """
+
+    return (
+        "https://drive.google.com/uc?export=download&id=" + sharing_url.split("/")[-2]
+    )

@@ -1,7 +1,8 @@
 import streamlit as st
 import pandas as pd
 
-from utils import Config
+from utils import Config, create_driver_path
+from constants import constants
 
 config = Config()
 
@@ -19,4 +20,4 @@ st.write(
 )
 st.markdown("### Dados brutos:")
 st.write("Os dados foram extraídos do site para uma tabela com o seguinte formato:")
-st.write(pd.read_json(config.raw_filepath))
+st.write(pd.read_json(create_driver_path(sharing_url=constants.RAW_URL.value)))
