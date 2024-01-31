@@ -1,4 +1,5 @@
 import streamlit as st
+import altair as alt
 import pandas as pd
 import joblib
 from utils import Config, create_driver_path
@@ -93,6 +94,22 @@ model = joblib.load("modelo.pkl")
 
 predictions = model.predict(x_test).reshape(-1, 1)
 test_timestamps = timeseries[train_size:].index[timesteps - 1 :]
-st.pyplot(
-    plot_svm(test_timestamps[-100:], y_test[-100:], predictions[-100:], mode="gcf")
+
+df_real = pd.DataFrame(y_test, index=test_timestamps, columns=["valor_real"])
+df_pred = pd.DataFrame(predictions, index=test_timestamps, columns=["previsão"])
+df_complete = df_real.join(df_pred)
+
+chart = alt.Chart(df_real).mark_line().encode(
+    color=alt.value("blue"), label="Coluna A"  # Cor da linha para Coluna A
+) + alt.Chart(df_pred).mark_line().encode(
+    color=alt.value("red"), label="Coluna B"  # Cor da linha para Coluna B
 )
+
+st.altair_chart(chart, use_container_width=True)
+
+
+# st.pyplot(
+#     plot_svm(test_timestamps[-100:], y_test[-100:], predictions[-100:], mode="gcf")
+# )
+
+st.write("Pela proximidade nas linhas n")
