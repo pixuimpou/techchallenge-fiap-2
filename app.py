@@ -12,6 +12,7 @@ from model_utils import split_x_y, aggregate_data_in_timesteps
 config = Config()
 
 st.title("Tech Challenge - Fase 2")
+st.write("Rafael Carvalho Pinheiro - RM351473")
 st.divider()
 st.markdown("# O Desafio")
 st.markdown("Prever diáriamente o fechamento da IBOVESPA")
