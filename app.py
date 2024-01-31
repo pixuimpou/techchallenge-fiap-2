@@ -126,6 +126,8 @@ st.write(
 
 mape = mean_absolute_percentage_error(y_test, predictions)
 
+st.divider()
+
 st.markdown(
     "<h2 style='text-align: center; color: white;'>Margem de erro média:</h2>",
     unsafe_allow_html=True,
