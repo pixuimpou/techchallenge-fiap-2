@@ -112,6 +112,8 @@ df_pred = pd.DataFrame(
 )
 df = df_real.join(df_pred).reset_index()
 
+st.markdown("### Resultado")
+
 chart = (
     alt.Chart(df)
     .mark_line()
