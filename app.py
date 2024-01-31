@@ -1,15 +1,17 @@
 import streamlit as st
 import pandas as pd
-
+import joblib
 from utils import Config, create_driver_path
 from constants import constants
-from plots import plot_seasonal_decompose
+from plots import plot_seasonal_decompose, plot_svm
+from model_utils import split_x_y, aggregate_data_in_timesteps
+
 
 config = Config()
 
 st.title("Tech Challenge - Fase 2")
 st.divider()
-st.markdown("# O Desafio:")
+st.markdown("# O Desafio")
 st.markdown("Prever diáriamente o fechamento da IBOVESPA")
 st.markdown("## Captura dos Dados")
 st.write(
@@ -66,3 +68,29 @@ st.markdown(
 st.set_option("deprecation.showPyplotGlobalUse", False)
 timeseries = df_timeseries["ultimo"]
 st.pyplot(plot_seasonal_decompose(timeseries=timeseries["2023":], mode="gcf"))
+st.write(
+    """A partir do gráfico no centro,
+    é possivel notar a sazonalidade nos dados
+    e, mais uma vez, a tendencia de subida"""
+)
+st.divider()
+st.markdown("## Modelo Final")
+st.write(
+    """
+    Após testes com modelos de previsão de séries temporais,
+    o modelo escolhido foi o SVM,
+    por conta da sua performance superior para os dados"""
+)
+
+train_size = int(len(timeseries) * constants.TEST_PERCENTAGE.value)
+test = timeseries[train_size:]
+test_data = test.values
+timesteps = constants.TIMESTEPS.value
+test_data_timesteps = aggregate_data_in_timesteps(test_data, timesteps)
+x_test, y_test = split_x_y(test_data_timesteps, timesteps)
+
+model = joblib.load("modelo.pkl")
+
+predictions = model.predict(x_test).reshape(-1, 1)
+test_timestamps = timeseries[train_size:].index[timesteps - 1 :]
+st.pyplot(plot_svm(test_timestamps[100:], y_test[100:], predictions[100:], mode="gcf"))

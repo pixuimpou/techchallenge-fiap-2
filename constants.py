@@ -13,3 +13,6 @@ class constants(Enum):
 
     RAW_FILE_ID = "1l5vTZCEBk22HNw5ttfXuo3Q9l7XW-led"
     TIMESERIES_FILE_ID = "1r9gUdTkhdfxjtilV8YXO6_R-6gbJE2FK"
+
+    TIMESTEPS = 7
+    TEST_PERCENTAGE = 0.8
