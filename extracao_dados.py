@@ -126,7 +126,7 @@ def save_raw_data(data: dict):
     Args:
         data (str): data to write
     """
-    path = config.filepath
+    path = config.raw_filepath
     os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "w", encoding="utf-8") as fi:
         print(f"Writing {len(data)} rows on path {path}")

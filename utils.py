@@ -2,7 +2,6 @@
 import json
 import os
 from datetime import date
-from dateutil.relativedelta import relativedelta
 from constants import constants
 
 
@@ -45,7 +44,8 @@ class Config:
         filename = (
             f"from_{self.start_date.isoformat()}_to_{self.end_date.isoformat()}.json"
         )
-        self.filepath = os.path.join(data_folder, filename)
+        self.raw_filepath = os.path.join(data_folder, filename)
+        self.timeseries_filepath = os.path.join(data_folder, "timeseries.csv")
 
     def load_config(self, project_folder: str) -> dict:
         """
