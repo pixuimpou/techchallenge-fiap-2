@@ -41,7 +41,7 @@ st.markdown("Após os tratamentos, ficamos com a seguinte série temporal:")
 df_timeseries = pd.read_csv(
     create_driver_path(file_id=constants.TIMESERIES_FILE_ID.value)
 )
-df_timeseries["data"] = pd.to_datetime(df_timeseries["data"]).dt.to_timestamp(freq="D")
+df_timeseries["data"] = df_timeseries["data"].to_timestamp(freq="D")
 df_timeseries = df_timeseries.set_index("data", drop=True)
 
 st.write(df_timeseries.head(20))
