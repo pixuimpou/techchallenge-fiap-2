@@ -126,6 +126,7 @@ st.write(
 
 mape = mean_absolute_percentage_error(y_test, predictions)
 
-st.markdown("## Margem de erro média:")
+
 with st.columns(3)[1]:
+    st.markdown("## Margem de erro média:")
     st.markdown(f"# {mape * 100:.2f}%")
