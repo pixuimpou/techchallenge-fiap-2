@@ -35,8 +35,12 @@ st.markdown(
 - Completar as datas ausentes (fins de semana e feriados não aparecem nos dados do site)
 """
 )
+st.markdown("### Dados tratados:")
 st.markdown("Após os tratamentos, ficamos com a seguinte série temporal:")
 df_timeseries = pd.read_csv(
     create_driver_path(file_id=constants.TIMESERIES_FILE_ID.value)
 ).set_index("data", drop=True)
 st.write(df_timeseries.head(20))
+
+st.markdown("## Análise da série temporal")
+st.line_chart(df_timeseries)
