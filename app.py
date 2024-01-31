@@ -85,6 +85,13 @@ st.write(
     por conta da sua performance superior para os dados"""
 )
 
+st.write(
+    """Devido a sazonalidade observada na análise prelinar, 
+         os dados foram agregados em janelas de 7 dias,
+         sendo os 6 primeiros dias usados como features e 
+         o 7º dia como variável alvo"""
+)
+
 train_size = int(len(timeseries) * constants.TEST_PERCENTAGE.value)
 test = timeseries[train_size:]
 test_data = test.values
