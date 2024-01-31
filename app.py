@@ -93,4 +93,4 @@ model = joblib.load("modelo.pkl")
 
 predictions = model.predict(x_test).reshape(-1, 1)
 test_timestamps = timeseries[train_size:].index[timesteps - 1 :]
-st.pyplot(plot_svm(test_timestamps[10:], y_test[10:], predictions[10:], mode="gcf"))
+st.pyplot(plot_svm(test_timestamps[-10:], y_test[-10:], predictions[-10:], mode="gcf"))
