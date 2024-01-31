@@ -30,13 +30,13 @@ st.write(
 )
 st.markdown(
     """As etapas aplicadas foram:
-    1- Converter a coluna de data
-    2- Renomear e excluir colunas não utilizadas
-    3- Completar as datas ausentes (fins de semana e feriados não aparecem nos dados do site)
+    1. Converter a coluna de data
+    2. Renomear e excluir colunas não utilizadas
+    3. Completar as datas ausentes (fins de semana e feriados não aparecem nos dados do site)
     """
 )
 st.markdown("Após os tratamentos, ficamos com a seguinte série temporal:")
 df_timeseries = pd.read_csv(
     create_driver_path(file_id=constants.TIMESERIES_FILE_ID.value)
 )
-st.write(df_raw.head(20))
+st.write(df_timeseries.head(20))
