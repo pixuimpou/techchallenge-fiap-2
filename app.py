@@ -116,7 +116,7 @@ st.altair_chart(chart, use_container_width=True)
 
 df_real = pd.DataFrame(
     y_test[-100:], index=test_timestamps[-100:], columns=["valor_real"]
-).reset_index()
+)
 df_pred = pd.DataFrame(
     predictions[-100:], index=test_timestamps[-100:], columns=["previsao"]
 )
