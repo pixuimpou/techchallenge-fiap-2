@@ -101,7 +101,6 @@ df_real = pd.DataFrame(
 df_pred = pd.DataFrame(
     predictions, index=test_timestamps, columns=["previsão"]
 ).reset_index()
-df_complete = df_real.join(df_pred)
 
 chart = alt.Chart(df_real).mark_line().encode(
     x="data",
