@@ -118,13 +118,13 @@ df_real = pd.DataFrame(
 df_pred = pd.DataFrame(
     predictions[-100:], index=test_timestamps[-100:], columns=["previsão"]
 )
-df = df_real.join(df_pred)
+df = df_real.join(df_pred).reset_index()
 
 chart = (
     alt.Chart(df)
     .mark_line()
     .transform_fold(fold=["valor_real", "previsão"], as_=["variable", "value"])
-    .encode(x="yearmonth(date):T", y="max(value):Q", color="variable:N")
+    .encode(x="date:T", y="value:Q", color="variable:N")
 )
 
 st.altair_chart(chart, use_container_width=True)
