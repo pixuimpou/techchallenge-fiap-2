@@ -118,14 +118,14 @@ df_real = pd.DataFrame(
     y_test[-100:], index=test_timestamps[-100:], columns=["valor_real"]
 ).reset_index()
 df_pred = pd.DataFrame(
-    predictions[-100:], index=test_timestamps[-100:], columns=["previsão"]
+    predictions[-100:], index=test_timestamps[-100:], columns=["previsao"]
 )
 df = df_real.join(df_pred).reset_index()
 
 chart = (
     alt.Chart(df)
     .mark_line()
-    .transform_fold(fold=["valor_real", "previsão"], as_=["variable", "value"])
+    .transform_fold(fold=["valor_real", "previsao"], as_=["variable", "value"])
     .encode(
         x="data:T",
         y="value:Q",
