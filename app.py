@@ -106,12 +106,10 @@ chart = alt.Chart(df_real).mark_line().encode(
     x="data",
     y="valor_real",
     color=alt.value("blue"),  # Cor da linha para Coluna A
-    label="Coluna A",
 ) + alt.Chart(df_pred).mark_line().encode(
     x="data",
     y="previsão",
     color=alt.value("red"),  # Cor da linha para Coluna B
-    label="Coluna B",
 )
 
 st.altair_chart(chart, use_container_width=True)
