@@ -112,6 +112,8 @@ chart = alt.Chart(df_real).mark_line().encode(
     color=alt.value("red"),  # Cor da linha para Coluna B
 )
 
+st.altair_chart(chart, use_container_width=True)
+
 df_real = pd.DataFrame(
     y_test[-100:], index=test_timestamps[-100:], columns=["valor_real"]
 ).reset_index()
@@ -124,7 +126,7 @@ chart = (
     alt.Chart(df)
     .mark_line()
     .transform_fold(fold=["valor_real", "previsão"], as_=["variable", "value"])
-    .encode(x="date:T", y="max(value):Q", color="variable:N")
+    .encode(x="date:T", y="value:Q", color="variable:N")
 )
 
 st.altair_chart(chart, use_container_width=True)
