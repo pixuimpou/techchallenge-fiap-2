@@ -125,11 +125,11 @@ df = df_real.join(df_pred).reset_index()
 chart = (
     alt.Chart(df)
     .mark_line()
-    .transform_fold(fold=["valor_real", "previsao"], as_=["variable", "value"])
+    .transform_fold(fold=["valor_real", "previsao"], as_=["variavel", "fechamento"])
     .encode(
         x="data:T",
-        y="value:Q",
-        color=alt.Color("variable:N", scale=alt.Scale(range=["blue", "red"])),
+        y="fechamento:Q",
+        color=alt.Color("variavel:N", scale=alt.Scale(range=["blue", "red"])),
     )
 )
 
