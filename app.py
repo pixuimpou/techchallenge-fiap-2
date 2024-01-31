@@ -126,7 +126,7 @@ chart = (
     alt.Chart(df)
     .mark_line()
     .transform_fold(fold=["valor_real", "previsão"], as_=["variable", "value"])
-    .encode(x="data:T", y="value:Q", color="variable:N")
+    .encode(x="data:T", y="value:Q", color=alt.Color("variable:N", scale=alt.Scale(range=["blue", "red"]))
 )
 
 st.altair_chart(chart, use_container_width=True)
