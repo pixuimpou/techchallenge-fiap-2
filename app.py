@@ -10,7 +10,7 @@ from model_utils import split_x_y, aggregate_data_in_timesteps
 
 
 config = Config()
-
+st.set_page_config(page_title="Modelo IBOVESPA")
 st.title("Tech Challenge - Fase 2")
 st.write("Rafael Carvalho Pinheiro - RM351473")
 st.divider()
